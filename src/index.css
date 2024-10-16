@@ -80,12 +80,16 @@ main {
     --ring: 212.7 26.8% 83.9%;
   }
 }
+input:checked ~ .dot {
+  transform: translateX(100%);
+}
+
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-[var(--border)];
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[var(--background)] text-[var(--foreground)];
   }
 }

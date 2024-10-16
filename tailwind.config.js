@@ -13,10 +13,20 @@ export default {
       padding: '1rem',
       margin: '0 auto',
       screens: {
-        '2xl': '1400px',
+        '2xl': '1200px',
+        'xl':'1000px',
       },
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Work Sans', 'sans-serif'],
+      },
+      colors: {
+        border: 'hsl(var(--border))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+      },
+    },
   },
   plugins: [],
 }
