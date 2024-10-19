@@ -12,7 +12,7 @@ export const Header = () => {
                 <h3 className='hidden lg:flex text-xl'>Meta<span className='font-bold'>Blog</span></h3>
             </div>
             <nav className='hidden md:flex'>
-                <ul className='flex flex-items-center gap-5'>
+                <ul className='flex flex-items-center gap-8'>
                     {navbarList.map(item => (
                         <Link to={item.link}>
                             <li className='text-[#3B3C4A]' key={item.id}>{item.title}</li>
