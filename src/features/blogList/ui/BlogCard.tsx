@@ -14,7 +14,7 @@ export const BlogCard: FC<BlogCardProps> = ({tag, author, date, text, img, index
     return (
         <div key={index} className='border border-[#E8E8EA] cursor-pointer rounded-xl'>
             <div className='p-2 lg:p-4'>
-                <img src={img} alt='img' className='max-w-[360px] pb-5 lg:pr-5 rounded-xl'/>
+                <img src={img} alt='img' className='max-w-[360px] py-3 lg:pr-5 rounded-xl'/>
                 <span className="rounded-lg text-sm text-[#4B6BFB] bg-[#4B6BFB]/[0.05] text-center p-2">
     {tag}
 </span>
