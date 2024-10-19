@@ -2,7 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import {useCallback} from "react";
 import {blogCarouselList} from "../../../shared/utils/blogCarouselList";
 import {ChevronLeft, ChevronRight} from "lucide-react";
-import {BlogCard} from "./BlogCard";
+import {BlogSlide} from "./BlogSlide.tsx";
 import {BlogCarouselProgress} from "./BlogCarouselProgress.tsx";
 import {useDotButton} from "./useDotButtons.tsx";
 
@@ -22,11 +22,11 @@ export const BlogCarousel = () => {
     }, [emblaApi]);
 
     return (
-        <div className="relative w-full h-[800px]">
+        <div className="relative w-full h-[500px]">
             <div ref={emblaRef} className="overflow-hidden w-full h-full">
-                <div className="flex">
+                <div className="flex gap-5">
                     {blogCarouselList && blogCarouselList.map((item, index) => (
-                        <BlogCard
+                        <BlogSlide
                             key={index}
                             index={index}
                             text={item.text}
@@ -41,12 +41,12 @@ export const BlogCarousel = () => {
 
             {scrollSnaps.length > 0 && (
                 <div
-                    className="absolute z-10 top-[25%] left-[50%] transform -translate-x-1/2 flex items-center justify-between w-full">
+                    className="absolute z-10 top-[45%] left-[50%] transform -translate-x-1/2 flex items-center justify-between w-full">
                     <button onClick={onPrevButtonClick} className="p-2">
                         <ChevronLeft size={40} color="white"/>
                     </button>
 
-                    <div className='absolute top-64 left-[38%] sm:left-[45%]'>
+                    <div className='absolute top-56 left-[38%] sm:left-[45%]'>
 
                     <BlogCarouselProgress
                         scrollSnaps={scrollSnaps as []}

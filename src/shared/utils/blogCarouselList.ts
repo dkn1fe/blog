@@ -26,4 +26,28 @@ export const blogCarouselList = [
         date: 'August 20, 2022',
         img: first1
     },
+    {
+        id: 4,
+        tag: 'Technology',
+        text: 'The Impact of Technology on the Workplace: How Technology is Changing',
+        author: 'Tracey Wilson',
+        date: 'August 20, 2022',
+        img: first1
+    },
+    {
+        id: 5,
+        tag: 'Car',
+        text: 'The Impact of Technology on the Workplace: How Technology is Changing',
+        author: 'Tracey Wilson',
+        date: 'August 20, 2022',
+        img: second1
+    },
+    {
+        id: 6,
+        tag: 'Car',
+        text: 'The Impact of Technology on the Workplace: How Technology is Changing',
+        author: 'Tracey Wilson',
+        date: 'August 20, 2022',
+        img: first1
+    },
 ]

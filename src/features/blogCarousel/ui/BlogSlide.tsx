@@ -10,7 +10,7 @@ interface BlogCardProps {
     index: number;
 }
 
-export const BlogCard: FC<BlogCardProps> = ({img, tag, text, author, date}) => {
+export const BlogSlide: FC<BlogCardProps> = ({img, tag, text, author, date}) => {
     return (
         <div className="relative flex-shrink-0 w-full h-[450px] mt-10 overflow-hidden">
             <div
@@ -21,7 +21,7 @@ export const BlogCard: FC<BlogCardProps> = ({img, tag, text, author, date}) => {
                 className="absolute top-0 left-0 w-full h-full rounded-xl"
             >
                 <div className="absolute top-0 left-0 w-full h-full bg-black/50 rounded-xl"></div>
-                <div className="absolute bottom-14 left-8 md:bottom-12 md:left-11">
+                <div className="absolute bottom-14 left-10 md:bottom-12 md:left-11">
                        <span className="text-white rounded-lg text-sm bg-[#4B6BFB] text-center p-2">
                              {tag}
                         </span>
