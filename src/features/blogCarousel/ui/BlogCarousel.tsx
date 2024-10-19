@@ -46,7 +46,7 @@ export const BlogCarousel = () => {
                         <ChevronLeft size={40} color="white"/>
                     </button>
 
-                    <div className='absolute top-64 left-[45%]'>
+                    <div className='absolute top-64 left-[38%] sm:left-[45%]'>
 
                     <BlogCarouselProgress
                         scrollSnaps={scrollSnaps as []}
