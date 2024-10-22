@@ -8,3 +8,7 @@ export const registrationInputList = [
     {id:3,title:'password',type:'password',},
     {id:4,title:'repeatPassword',type:'password',},
 ]
+export const loginInputList = [
+    {id:1,title:'email',type:'email',},
+    {id:2,title:'password',type:'password',},
+]
