@@ -1,22 +1,30 @@
-import {loginInputList, registrationInputList} from '../../../shared/utils/authList.ts'
-import { useFormik, FormikValues } from "formik";
+import {loginInputList} from '../../../shared/utils/authList.ts'
+import {useFormik, FormikValues} from "formik";
+import {GoogleLogin} from "./GoogleLogin.tsx";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../../app/providers/StoreProvider/config/store.ts";
+import {login} from "../../../app/providers/StoreProvider/config/AuthSlice.ts";
 import * as Yup from "yup";
 import logo from "../../../assets/home/logo.png";
-import {GoogleLogin} from "./GoogleLogin.tsx";
+import {Link} from "react-router-dom";
+
 
 
 export const Login = () => {
+    const dispatch = useDispatch<AppDispatch>()
+
     const formik = useFormik({
-        initialValues:{
-            email:'',
-            password:'',
+        initialValues: {
+            email: '',
+            password: '',
         },
-        validationSchema:Yup.object().shape({
-            email:Yup.string().required().email().trim(),
+        validationSchema: Yup.object().shape({
+            email: Yup.string().required().email().trim(),
             password: Yup.string().required().trim(),
         }),
-        onSubmit:(values:FormikValues) => {
-            const {email,password} = values;
+        onSubmit: (values: FormikValues) => {
+            const {email, password} = values;
+            dispatch(login({email, password}))
         }
     })
     return (
@@ -27,7 +35,7 @@ export const Login = () => {
                         <div className="space-y-4">
                             <img src={logo}
                                  loading="lazy" className="w-10" alt="blog logo"/>
-                            <h2 className="mb-8 text-2xl text-cyan-900 font-bold">Sign in to unlock the <br/> best
+                            <h2 className="mb-8 text-2xl text-cyan-900 font-bold">Login to unlock the <br/> best
                                 of Meta<span className='font-bold'>Blog</span></h2>
                         </div>
                         <form onSubmit={formik.handleSubmit} className="mt-6 grid space-y-4">
@@ -55,12 +63,25 @@ export const Login = () => {
                                     ) : null}
                                 </div>
                             ))}
+                            <button
+                                type='submit'
+                                className='w-full mt-8 bg-gray-600 text-white py-2 px-4 rounded-md shadow-lg duration-200 hover:bg-indigo-700 focus:outline-none focus:ring-2'>
+                                Login
+                            </button>
                         </form>
-                        <button className='w-full mt-8 bg-gray-600 text-white py-2 px-4 rounded-md shadow-lg duration-200 hover:bg-indigo-700 focus:outline-none focus:ring-2'>
-                            Login
-                        </button>
-                        <div className='mt-3'>
+                        <div className='pt-3'>
                             <GoogleLogin/>
+                        </div>
+                        <div className='pt-4 border-t mt-6'>
+                            <p className='text-center font-medium text-lg mt-2'>
+                                If you don't have account
+                                <Link
+                                    to='/auth/register'
+                                    className='block text-cyan-800 font-semibold text-xl mt-2 hover:text-indigo-600 duration-200 hover:underline'
+                                >
+                                    Register here
+                                </Link>
+                            </p>
                         </div>
                     </div>
                 </div>

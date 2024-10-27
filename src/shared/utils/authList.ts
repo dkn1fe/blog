@@ -12,3 +12,10 @@ export const loginInputList = [
     {id:1,title:'email',type:'email',},
     {id:2,title:'password',type:'password',},
 ]
+
+
+export const handleRegisterAndLogin = async ({ dispatch, registration, login, email, password, username }:any) => {
+    await dispatch(registration({ username, email, password }));
+    return dispatch(login({ email, password }));
+};
+

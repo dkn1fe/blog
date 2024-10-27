@@ -14,7 +14,7 @@ export const Header = () => {
             <nav className='hidden md:flex'>
                 <ul className='flex flex-items-center gap-8'>
                     {navbarList.map(item => (
-                        <Link to={item.link}>
+                        <Link key = {item.id} to={item.link}>
                             <li className='text-[#3B3C4A]' key={item.id}>{item.title}</li>
                         </Link>
                     ))}
