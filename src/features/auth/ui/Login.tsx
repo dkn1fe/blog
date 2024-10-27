@@ -4,10 +4,9 @@ import {GoogleLogin} from "./GoogleLogin.tsx";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../../app/providers/StoreProvider/config/store.ts";
 import {login} from "../../../app/providers/StoreProvider/config/AuthSlice.ts";
-import * as Yup from "yup";
-import logo from "../../../assets/home/logo.png";
 import {Link} from "react-router-dom";
-
+import logo from "../../../assets/home/logo.png";
+import * as Yup from "yup";
 
 
 export const Login = () => {
