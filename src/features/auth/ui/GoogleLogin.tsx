@@ -3,7 +3,7 @@ import {jwtDecode} from "jwt-decode";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../../app/providers/StoreProvider/config/store.ts";
 import {login, registration} from "../../../app/providers/StoreProvider/config/AuthSlice.ts";
-import {handleRegisterAndLogin} from "../../../shared/utils/authList.ts";
+import {handleRegisterAndLoginGoogle} from "../../../shared/utils/authList.ts";
 import {useNavigate} from "react-router-dom";
 
 interface ExtendedJwtPayload {
@@ -26,7 +26,7 @@ export const GoogleLogin = () => {
                     const decoded = jwtDecode<ExtendedJwtPayload>(credentialResponse.credential as string)
                     const {email, given_name} = decoded
                     let password = given_name, username = given_name
-                    handleRegisterAndLogin({
+                    handleRegisterAndLoginGoogle({
                         dispatch,
                         email,
                         username,

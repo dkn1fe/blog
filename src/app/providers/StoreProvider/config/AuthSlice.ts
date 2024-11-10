@@ -2,10 +2,21 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AuthService} from "../../../../shared/services/services.ts";
 import {UserType} from "../../../../entities/UserType.ts";
 
-const initialState = {
-    token: '' as string,
-    users:[],
-    userData: {} as {} | null,
+interface AuthStateType {
+    token: string,
+    users: UserType[],
+    typeNotificationMessage: 'failed' | 'success' | 'idle',
+    notificationMessage:string,
+    userData: UserType | null | {}, // поменять тип
+    isAuth: boolean,
+}
+
+const initialState: AuthStateType = {
+    token: '',
+    users: [],
+    typeNotificationMessage: 'idle',
+    notificationMessage:'',
+    userData: {},
     isAuth: false,
 }
 
@@ -21,22 +32,34 @@ export const AuthSlice = createSlice({
             state.userData = null
             state.isAuth = false
         },
+        clearMessage:(state)=>{
+            state.notificationMessage = ''
+            state.typeNotificationMessage = 'idle'
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(registration.fulfilled, (state, action) => {
             state.userData = action.payload
-            state.token = action.payload.token as string
+            state.token = action.payload.token
+            state.notificationMessage = action.payload.message
+        })
+        builder.addCase(registration.rejected, (state) => {
+            state.notificationMessage = 'This user already registered'
         })
         builder.addCase(login.fulfilled, (state, action) => {
             state.userData = action.payload
+            state.token = action.payload.token
+            state.notificationMessage = action.payload.message
             state.isAuth = true
-            state.token = action.payload.token as string
+        })
+        builder.addCase(login.rejected, (state) => {
+            state.notificationMessage = 'Invalid Credentials'
         })
         builder.addCase(getProfile.fulfilled, (state, action) => {
             state.userData = action.payload
             state.isAuth = true
         })
-        builder.addCase(onGetAllUsers.fulfilled,(state,action)=>{
+        builder.addCase(onGetAllUsers.fulfilled, (state, action) => {
             state.users = action.payload
         })
     }
@@ -45,14 +68,14 @@ export const AuthSlice = createSlice({
 
 export const registration = createAsyncThunk(
     'auth/register',
-    async ({username, email, password, role = 'author'}:UserType) => {
+    async ({username, email, password, role = 'author'}: UserType) => {
         return AuthService.registration({username, email, password, role})
     }
 )
 
 export const login = createAsyncThunk(
     'auth/login',
-    async ({email, password}:UserType) => {
+    async ({email, password}: UserType) => {
         return AuthService.login({email, password})
     }
 )
@@ -64,11 +87,11 @@ export const getProfile = createAsyncThunk(
 )
 export const onGetAllUsers = createAsyncThunk(
     'auth/allUsers',
-    async()=>{
+    async () => {
         return AuthService.getAllUsers()
     }
 )
 
-export const {loginSistem, logoutSistem} = AuthSlice.actions;
+export const {loginSistem, logoutSistem,clearMessage} = AuthSlice.actions;
 export default AuthSlice.reducer;
 

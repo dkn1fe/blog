@@ -1,8 +1,9 @@
 import {instance} from "../api/auth.ts";
+import {UserType} from "../../entities/UserType.ts";
 
 
 export const AuthService = {
-    async registration({username, email, password, role = 'author'}: any) {
+    async registration({username, email, password, role = 'author'}: UserType) {
         const {data} = await instance.post("register", {
             username,
             email,
@@ -12,7 +13,7 @@ export const AuthService = {
         return data;
     },
 
-    async login({email, password}: any) {
+    async login({email, password}: {email:string,password:string}) {
         const {data} = await instance.post("login", {email, password});
         localStorage.setItem("token", data.token);
         return data;

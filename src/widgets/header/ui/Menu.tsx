@@ -23,7 +23,7 @@ export const Menu = () => {
             </div>
 
             <ul
-                className={`fixed inset-y-16 left-0 transform bg-gray-900 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20 flex w-full list-none flex-col justify-start p-4 transition-transform duration-500 ease-in-out`}
+                className={`fixed inset-y-16 left-0 transform bg-gray-900 ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-20 flex w-full h-full list-none flex-col justify-start p-4 transition-transform duration-500 ease-in-out`}
             >
                 {navbarList.map((item, index) => (
                     <li key={index} className='py-2 text-center'>
