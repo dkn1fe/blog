@@ -31,6 +31,7 @@ export const AuthSlice = createSlice({
         logoutSistem: (state) => {
             state.userData = null
             state.isAuth = false
+            localStorage.removeItem('token')
         },
         clearMessage:(state)=>{
             state.notificationMessage = ''
