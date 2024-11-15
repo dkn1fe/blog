@@ -1,5 +1,5 @@
 import {instance} from "../api/auth.ts";
-import {UserType} from "../../entities/UserType.ts";
+import {UserType} from "@/entities/UserType.ts";
 
 
 export const AuthService = {

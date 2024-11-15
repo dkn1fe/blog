@@ -11,8 +11,14 @@ export const loginInputList = [
     {id: 2, title: 'password', type: 'password',},
 ]
 
+export const settingsOption = [
+    {id:1,title:'Username',label:'username',type:'text'},
+    {id:2,title:'Email',label:'email',type:'email'},
+    {id:3,title:'Phone',label:'phone',type:'string'},
+    {id:4,title:'Avatar',label:'avatar',type:'file'}
+]
 
-export const handleRegisterAndLoginGoogle = async ({dispatch, registration, login, email, password, username}: any) => {
+    export const handleRegisterAndLoginGoogle = async ({dispatch, registration, login, email, password, username}: any) => {
     await dispatch(registration({username, email, password}));
     return dispatch(login({email, password}));
 };
@@ -21,6 +27,9 @@ export const notificationResponse: Record<string, 'failed' | 'success'> = {
     'This user already registered': 'success',
     'Invalid Credentials': 'failed',
     'Login success': 'success',
-    'User registered successfully': 'success'
+    'User registered successfully': 'success',
+    'Username was changed':'success',
+    'Email was changed':'success',
+    'Phone was changed':'success',
 }
 

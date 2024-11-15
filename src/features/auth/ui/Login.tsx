@@ -1,11 +1,11 @@
-import {loginInputList, notificationResponse} from '../../../shared/utils/authList.ts'
+import {loginInputList, notificationResponse} from '@/shared/utils/authList.ts'
 import {useFormik, FormikValues} from "formik";
 import {GoogleLogin} from "./GoogleLogin.tsx";
 import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../../app/providers/StoreProvider/config/store.ts";
-import {clearMessage, login} from "../../../app/providers/StoreProvider/config/AuthSlice.ts";
+import {AppDispatch, RootState} from "@/app/providers/StoreProvider/config/store.ts";
+import {clearMessage, login} from "@/app/providers/StoreProvider/config/AuthSlice.ts";
 import {Link, useNavigate} from "react-router-dom";
-import {UseMessage} from '../../../shared/hooks/UseMessage.tsx'
+import {UseMessage} from '@/shared/hooks/UseMessage.tsx'
 import {useEffect, useState} from 'react';
 import logo from "../../../assets/home/logo.png";
 import * as Yup from "yup";
@@ -20,7 +20,6 @@ export const Login = () => {
     const status: string | undefined = notificationResponse[message];
 
     const notification = UseMessage({type: 'Login', message, status, isShow})
-
 
 
     const formik = useFormik({
@@ -40,10 +39,10 @@ export const Login = () => {
     })
 
     useEffect(() => {
-        if(status === 'success'){
+        if (status === 'success') {
             navigate('/')
         }
-    }, [status,navigate])
+    }, [status, navigate])
 
     return (
         <div className="relative pt-16 container m-auto px-6 text-gray-500 md:px-12 xl:px-40">

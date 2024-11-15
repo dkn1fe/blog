@@ -1,6 +1,6 @@
-import {BlogCarousel} from "../../../features/blogCarousel";
-import {BlogList} from "../../../features/blogList";
-import {ButtonLoadMore} from "../../../features/blogList/ui/ButtonLoadMore.tsx";
+import {BlogCarousel} from "@/features/blogCarousel";
+import {BlogList} from "@/features/blogList";
+import {ButtonLoadMore} from "@/features/blogList";
 
 
 export const HomePage = () => {

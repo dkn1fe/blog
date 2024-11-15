@@ -3,10 +3,10 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, useNavigate} from "react-router-dom";
 import {useFormik, FormikValues} from "formik";
-import {notificationResponse, registrationInputList} from "../../../shared/utils/authList.ts";
-import {clearMessage, registration} from "../../../app/providers/StoreProvider/config/AuthSlice.ts";
-import {AppDispatch, RootState} from "../../../app/providers/StoreProvider/config/store.ts";
-import {UseMessage} from "../../../shared/hooks/UseMessage.tsx";
+import {notificationResponse, registrationInputList} from "@/shared/utils/authList.ts";
+import {clearMessage, registration} from "@/app/providers/StoreProvider/config/AuthSlice.ts";
+import {AppDispatch, RootState} from "@/app/providers/StoreProvider/config/store.ts";
+import {UseMessage} from "@/shared/hooks/UseMessage.tsx";
 import logo from '../../../assets/home/logo.png';
 import * as Yup from "yup";
 

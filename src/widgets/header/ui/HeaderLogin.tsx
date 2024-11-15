@@ -41,7 +41,7 @@ export const HeaderLogin: FC<HeaderLoginProps> = ({isAuth,username}) => {
     }
 
     return (
-        <div className='flex justify-center'>
+        <div className='hidden md:flex justify-center'>
             {!isAuth && (
                 <Link to='/auth/login' className='border border-[#696A75]/[0.50] text-[#696A75] rounded-lg px-3 py-2'>
                     Login
@@ -51,7 +51,7 @@ export const HeaderLogin: FC<HeaderLoginProps> = ({isAuth,username}) => {
                 <Sheet>
                     <SheetTrigger className='focus:outline-none' asChild>
                         <Avatar>
-                            <AvatarImage className='cursor-pointer' src={profile} alt="profile"/>
+                            <AvatarImage className='cursor-pointer pt-2 md:pt-0' src={profile} alt="profile"/>
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                     </SheetTrigger>
@@ -59,7 +59,7 @@ export const HeaderLogin: FC<HeaderLoginProps> = ({isAuth,username}) => {
                         <SheetHeader>
                             <SheetTitle className='flex items-center gap-2'>
                                 <Avatar className='flex items-center'>
-                                    <AvatarImage className='cursor-pointer' src={profile} alt="profile"/>
+                                    <AvatarImage src={profile} alt="profile"/>
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                                 <p>{username}</p>

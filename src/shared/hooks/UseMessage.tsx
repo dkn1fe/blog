@@ -3,7 +3,7 @@ import {NotificationMessage} from "../../features/auth/ui/NotificationMessage.ts
 import {useNavigate} from "react-router-dom";
 
 interface UseMessageProps {
-    type: 'Login' | 'Registration',
+    type: 'Login' | 'Registration' | 'Settings',
     message: string,
     status:string,
     isShow?:boolean

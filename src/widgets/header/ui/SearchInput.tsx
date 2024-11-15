@@ -1,9 +1,16 @@
 import search from '../../../assets/home/search.png'
 import {DarkMode} from "./DarkMode.tsx";
-import {useState} from "react";
+import {FC, useState} from "react";
 import {MobileMenu} from "./MobileMenu.tsx";
+import {HeaderLogin} from "@/widgets/header/ui/HeaderLogin.tsx";
 
-export const SearchInput = () => {
+
+interface HeaderLoginProps {
+    isAuth: boolean,
+    username:string,
+}
+
+export const SearchInput:FC<HeaderLoginProps> = ({isAuth,username}) => {
     const [isOpenSearchInput,setIsOpenSearchInput] = useState(false)
 
     const handleOpenSearchInput = () => {
@@ -11,8 +18,8 @@ export const SearchInput = () => {
     }
 
     return(
-        <div className='flex items-center gap-3'>
-            <div className='relative -ml-16 hidden min-[500px]:block'>
+        <div className='flex items-center gap-6'>
+            <div className='relative -ml-32 hidden min-[500px]:block'>
                 <input className='relative w-full bg-[#F4F4F5] rounded-lg h-9 px-3 text-[#A1A1AA] focus:outline-none'
                        placeholder='Search'/>
                 <img className='absolute top-[30%] right-[5%]' src={search} alt='search'/>
@@ -24,6 +31,7 @@ export const SearchInput = () => {
             <div className='w-[66px]'>
                 <DarkMode/>
             </div>
+                <HeaderLogin isAuth={isAuth} username={username}/>
         </div>
     )
 }

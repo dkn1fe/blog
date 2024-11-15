@@ -1,13 +1,13 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {AuthService} from "../../../../shared/services/services.ts";
-import {UserType} from "../../../../entities/UserType.ts";
+import {AuthService} from "@/shared/services/services.ts";
+import {UserType} from "@/entities/UserType.ts";
 
 interface AuthStateType {
     token: string,
     users: UserType[],
     typeNotificationMessage: 'failed' | 'success' | 'idle',
     notificationMessage:string,
-    userData: UserType | null | {}, // поменять тип
+    userData: UserType | null
     isAuth: boolean,
 }
 
@@ -16,7 +16,7 @@ const initialState: AuthStateType = {
     users: [],
     typeNotificationMessage: 'idle',
     notificationMessage:'',
-    userData: {},
+    userData: null,
     isAuth: false,
 }
 
@@ -32,6 +32,7 @@ export const AuthSlice = createSlice({
             state.userData = null
             state.isAuth = false
             localStorage.removeItem('token')
+            localStorage.removeItem('isAuth')
         },
         clearMessage:(state)=>{
             state.notificationMessage = ''

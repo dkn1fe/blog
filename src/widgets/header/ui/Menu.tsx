@@ -1,8 +1,12 @@
-import { useState } from 'react';
-import { navbarList } from '../../../shared/utils/navbarList';
+import {FC, useState} from 'react';
+import {navbarList} from '@/shared/utils/navbarList';
 import {Link} from 'react-router-dom'
 
-export const Menu = () => {
+interface MenuProps {
+    isAuth: boolean
+}
+
+export const Menu: FC<MenuProps> = ({isAuth}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -36,6 +40,11 @@ export const Menu = () => {
                         </Link>
                     </li>
                 ))}
+                {!isAuth &&
+                    <Link
+                        className='hover:text-blue-400 text-center text-2xl transition-colors text-white duration-300'
+                        to='/auth/login'>Login
+                    </Link>}
             </ul>
         </div>
     );

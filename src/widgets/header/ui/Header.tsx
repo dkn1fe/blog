@@ -5,7 +5,6 @@ import {Menu} from "./Menu.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "@/app/providers/StoreProvider/config/store.ts";
 import {clearMessage} from "@/app/providers/StoreProvider/config/AuthSlice.ts";
-import {HeaderLogin} from "./HeaderLogin.tsx";
 import logo from '@/assets/home/logo.png'
 
 
@@ -13,7 +12,8 @@ export const Header = () => {
 
     const dispatch = useDispatch<AppDispatch>()
     const {isAuth,userData} = useSelector((state:RootState) => state.authSlice)
-    const {username} = userData ?? ''
+
+    const {username} = userData ?? {}
 
 
     return (
@@ -32,12 +32,11 @@ export const Header = () => {
                 </ul>
             </nav>
             <div className='order-1 md:hidden'>
-                <Menu/>
+                <Menu isAuth = {isAuth}/>
             </div>
             <div className='w-[166px] ml-16'>
-                <SearchInput/>
+                <SearchInput isAuth={isAuth} username={username as string}/>
             </div>
-                <HeaderLogin isAuth = {isAuth as boolean} username = {username}/>
         </div>
     )
 }
