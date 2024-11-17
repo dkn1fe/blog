@@ -16,8 +16,18 @@ export const ProfileService = {
         return data;
     },
 
-    async changeAvatar({avatarUrl}:{avatarUrl:string}){
-        const {data} = await  instance.patch('update-profile',{avatarUrl});
-        return data
+    async changeAvatar({ avatar }: { avatar: File | null }) {
+        const formData = new FormData();
+
+        if (avatar) {
+            formData.append('avatar', avatar);
+        }
+
+        const { data } = await instance.patch('update-profile', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return data;
     }
 }

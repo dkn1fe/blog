@@ -20,10 +20,11 @@ import {logoutSistem} from "@/app/providers/StoreProvider/config/AuthSlice.ts";
 
 interface HeaderLoginProps {
     isAuth: boolean,
-    username:string,
+    username: string,
+    avatar: string
 }
 
-export const HeaderLogin: FC<HeaderLoginProps> = ({isAuth,username}) => {
+export const HeaderLogin: FC<HeaderLoginProps> = ({isAuth, username, avatar}) => {
 
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
@@ -51,7 +52,8 @@ export const HeaderLogin: FC<HeaderLoginProps> = ({isAuth,username}) => {
                 <Sheet>
                     <SheetTrigger className='focus:outline-none' asChild>
                         <Avatar>
-                            <AvatarImage className='cursor-pointer pt-2 md:pt-0' src={profile} alt="profile"/>
+                            <AvatarImage className='cursor-pointer pt-2 md:pt-0' src={avatar ? avatar : profile}
+                                         alt="profile"/>
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                     </SheetTrigger>
@@ -59,7 +61,7 @@ export const HeaderLogin: FC<HeaderLoginProps> = ({isAuth,username}) => {
                         <SheetHeader>
                             <SheetTitle className='flex items-center gap-2'>
                                 <Avatar className='flex items-center'>
-                                    <AvatarImage src={profile} alt="profile"/>
+                                    <AvatarImage src={avatar ? avatar : profile} alt="profile"/>
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                                 <p>{username}</p>

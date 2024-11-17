@@ -1,6 +1,6 @@
 
 export interface UserType {
-    username?:string,
+    username?:string | undefined,
     password:string,
     email:string,
     phone:string,

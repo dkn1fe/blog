@@ -1,8 +1,13 @@
 import { Settings, SquarePlus, User } from "lucide-react";
 import { Button } from '@/components/ui/button.tsx';
 import { Link } from "react-router-dom";
+import {AppDispatch} from "@/app/providers/StoreProvider/config/store.ts";
+import {useDispatch} from "react-redux";
+import {clearMessage} from "@/app/providers/StoreProvider/config/ProfileSlice.ts";
 
 export const ProfileOption = () => {
+    const dispatch = useDispatch<AppDispatch>()
+
     const optionLinks = [
         { id: 1, title: 'Profile', link: '/profile', icon: <User color='gray' size={24} /> },
         { id: 2, title: 'Settings', link: '/profile/settings', icon: <Settings color='gray' size={24} /> },
@@ -15,7 +20,7 @@ export const ProfileOption = () => {
                 {optionLinks.map(item => (
                     <div key={item.id} className='flex items-center gap-3'>
                         {item.icon}
-                        <Link to={item.link}>
+                        <Link onClick={() => dispatch(clearMessage())} to={item.link}>
                             {item.title}
                         </Link>
                     </div>

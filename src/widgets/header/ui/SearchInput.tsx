@@ -8,9 +8,10 @@ import {HeaderLogin} from "@/widgets/header/ui/HeaderLogin.tsx";
 interface HeaderLoginProps {
     isAuth: boolean,
     username:string,
+    avatar:string
 }
 
-export const SearchInput:FC<HeaderLoginProps> = ({isAuth,username}) => {
+export const SearchInput:FC<HeaderLoginProps> = ({isAuth,username,avatar}) => {
     const [isOpenSearchInput,setIsOpenSearchInput] = useState(false)
 
     const handleOpenSearchInput = () => {
@@ -31,7 +32,7 @@ export const SearchInput:FC<HeaderLoginProps> = ({isAuth,username}) => {
             <div className='w-[66px]'>
                 <DarkMode/>
             </div>
-                <HeaderLogin isAuth={isAuth} username={username}/>
+                <HeaderLogin isAuth={isAuth} avatar = {avatar} username={username}/>
         </div>
     )
 }

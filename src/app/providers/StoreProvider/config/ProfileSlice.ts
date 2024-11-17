@@ -1,11 +1,11 @@
-import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import {ProfileService} from "@/shared/services/profile.ts";
 
-interface ProfileState{
-    notificationMessage:string
+interface ProfileState {
+    notificationMessage: string
 }
 
-const initialState:ProfileState = {
+const initialState: ProfileState = {
     notificationMessage: '',
 }
 
@@ -13,16 +13,23 @@ const initialState:ProfileState = {
 export const ProfileSlice = createSlice({
     name: 'profile',
     initialState,
-    reducers: {},
+    reducers: {
+        clearMessage: (state) => {
+            state.notificationMessage = ''
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(changeName.fulfilled, (state) => {
             state.notificationMessage = 'Username was changed'
         })
-        builder.addCase(changeEmail.fulfilled,(state) => {
+        builder.addCase(changeEmail.fulfilled, (state) => {
             state.notificationMessage = 'Email was changed'
         })
-        builder.addCase(changePhone.fulfilled,(state)=>{
+        builder.addCase(changePhone.fulfilled, (state) => {
             state.notificationMessage = 'Phone was changed'
+        })
+        builder.addCase(changeAvatar.fulfilled, (state) => {
+            state.notificationMessage = 'Avatar was changed'
         })
     }
 });
@@ -50,11 +57,11 @@ export const changePhone = createAsyncThunk(
 
 export const changeAvatar = createAsyncThunk(
     'profile/changeAvatar',
-    async ({avatarUrl}: { avatarUrl: string }) => {
-        return ProfileService.changeAvatar({avatarUrl})
+    async ({avatar}: { avatar: File | null }) => {
+        return ProfileService.changeAvatar({avatar})
     }
 )
 
-export const {} = ProfileSlice.actions;
+export const {clearMessage} = ProfileSlice.actions;
 export default ProfileSlice.reducer;
 

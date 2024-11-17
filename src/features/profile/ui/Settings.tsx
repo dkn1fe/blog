@@ -3,11 +3,11 @@ import {notificationResponse, settingsOption} from "@/shared/utils/authList.ts";
 import {Input} from "@/components/ui/input.tsx";
 import {ChangeEvent, useRef, useState} from "react";
 import {Button} from "@/components/ui/button.tsx";
-import * as Yup from "yup";
 import {AppDispatch, RootState} from "@/app/providers/StoreProvider/config/store.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {changeAvatar, changeEmail, changeName, changePhone} from "@/app/providers/StoreProvider/config/ProfileSlice.ts";
 import {UseMessage} from "@/shared/hooks/UseMessage.tsx";
+import * as Yup from "yup";
 
 export const Settings = () => {
     const [inputSubmitType, setInputSubmitType] = useState('');
@@ -15,10 +15,10 @@ export const Settings = () => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const dispatch = useDispatch<AppDispatch>()
-    const message = useSelector((state:RootState) => state.profileSlice.notificationMessage)
+    const message = useSelector((state: RootState) => state.profileSlice.notificationMessage)
 
     const status = notificationResponse[message]
-    const notification = UseMessage({type:'Settings',message,status})
+    const notification = UseMessage({type: 'Settings', message, status})
 
     const handleButtonClick = () => {
         fileInputRef.current?.click();
@@ -49,22 +49,29 @@ export const Settings = () => {
                 }),
         }),
         onSubmit: (values: FormikValues) => {
-            const {username, email, phone} = values;
-            switch (inputSubmitType){
+            let {username, email, phone, avatar} = values;
+            const test = inputSubmitType && (username.length ! == 0 || email.length ! == 0 || phone.length ! == 0)
+            console.log(test)
+            const formData = new FormData()
+
+            switch (inputSubmitType) {
                 case 'username':
-                    dispatch(changeName({username}))
+                    dispatch(changeName({username}));
                     break;
                 case 'email':
-                    dispatch(changeEmail({email}))
+                    dispatch(changeEmail({email}));
                     break;
                 case 'phone':
-                    dispatch(changePhone({phone}))
+                    dispatch(changePhone({phone}));
                     break;
                 case 'avatar':
-                    dispatch(changeAvatar({avatarUrl}))
+                    if (avatar) formData.append('avatar', avatar)
+                    avatar = formData.get('avatar')
+                    dispatch(changeAvatar({avatar}))
             }
-            formik.resetForm()
+            formik.resetForm();
         }
+
     });
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -101,6 +108,7 @@ export const Settings = () => {
                                 ref={fileInputRef}
                                 className='w-64 focus:outline-none'
                                 name={item.label}
+                                required = {item.label === inputSubmitType}
                                 type={item.type}
                                 onChange={item.type === 'file' ? handleFileChange : formik.handleChange}
                                 onBlur={formik.handleBlur}

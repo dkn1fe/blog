@@ -11,9 +11,9 @@ import logo from '@/assets/home/logo.png'
 export const Header = () => {
 
     const dispatch = useDispatch<AppDispatch>()
-    const {isAuth,userData} = useSelector((state:RootState) => state.authSlice)
+    const {isAuth, userData} = useSelector((state: RootState) => state.authSlice)
 
-    const {username} = userData ?? {}
+    const {username, avatar} = userData ?? {}
 
 
     return (
@@ -25,17 +25,17 @@ export const Header = () => {
             <nav className='hidden md:flex'>
                 <ul className='flex flex-items-center gap-10'>
                     {navbarList.map(item => (
-                        <Link onClick = {() => dispatch(clearMessage())} key = {item.id} to={item.link}>
+                        <Link onClick={() => dispatch(clearMessage())} key={item.id} to={item.link}>
                             <li className='text-[#3B3C4A]' key={item.id}>{item.title}</li>
                         </Link>
                     ))}
                 </ul>
             </nav>
             <div className='order-1 md:hidden'>
-                <Menu isAuth = {isAuth}/>
+                <Menu isAuth={isAuth}/>
             </div>
             <div className='w-[166px] ml-16'>
-                <SearchInput isAuth={isAuth} username={username as string}/>
+                <SearchInput isAuth={isAuth} avatar={avatar as string} username={username as string}/>
             </div>
         </div>
     )

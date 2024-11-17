@@ -31,5 +31,6 @@ export const notificationResponse: Record<string, 'failed' | 'success'> = {
     'Username was changed':'success',
     'Email was changed':'success',
     'Phone was changed':'success',
+    'Avatar was changed':'success'
 }
 
