@@ -1,6 +1,6 @@
 import useEmblaCarousel from "embla-carousel-react";
 import {useCallback} from "react";
-import {blogCarouselList} from "../../../shared/utils/blogCarouselList";
+import {blogCarouselList} from "@/shared/utils/blogCarouselList";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 import {BlogSlide} from "./BlogSlide.tsx";
 import {BlogCarouselProgress} from "./BlogCarouselProgress.tsx";

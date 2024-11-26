@@ -1,5 +1,5 @@
 import {BlogCard} from "./BlogCard.tsx";
-import {blogCarouselList} from "../../../shared/utils/blogCarouselList.ts";
+import {blogCarouselList} from "@/shared/utils/blogCarouselList.ts";
 
 export const BlogList = () => {
     return (

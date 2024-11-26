@@ -8,10 +8,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeAvatar, changeEmail, changeName, changePhone} from "@/app/providers/StoreProvider/config/ProfileSlice.ts";
 import {UseMessage} from "@/shared/hooks/UseMessage.tsx";
 import * as Yup from "yup";
+import {UseImageUrl} from "@/shared/hooks/UseImageUrl.tsx";
 
 export const Settings = () => {
     const [inputSubmitType, setInputSubmitType] = useState('');
-    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [file, setFile] = useState<File | null>(null)
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const dispatch = useDispatch<AppDispatch>()
@@ -19,6 +20,8 @@ export const Settings = () => {
 
     const status = notificationResponse[message]
     const notification = UseMessage({type: 'Settings', message, status})
+    const avatarUrl = UseImageUrl({file})
+
 
     const handleButtonClick = () => {
         fileInputRef.current?.click();
@@ -50,8 +53,6 @@ export const Settings = () => {
         }),
         onSubmit: (values: FormikValues) => {
             let {username, email, phone, avatar} = values;
-            const test = inputSubmitType && (username.length ! == 0 || email.length ! == 0 || phone.length ! == 0)
-            console.log(test)
             const formData = new FormData()
 
             switch (inputSubmitType) {
@@ -76,16 +77,11 @@ export const Settings = () => {
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.currentTarget.files?.[0];
-        const type = file && file.type.split('/')[0]
+
 
         if (!file) return;
         formik.setFieldValue('avatar', file)
-        const url = URL.createObjectURL(file)
-        setAvatarUrl(url)
-
-        if (type === 'image') return;
-        formik.setFieldValue('avatar', null);
-        setAvatarUrl(null);
+        setFile(file)
 
     };
 
@@ -108,7 +104,7 @@ export const Settings = () => {
                                 ref={fileInputRef}
                                 className='w-64 focus:outline-none'
                                 name={item.label}
-                                required = {item.label === inputSubmitType}
+                                required={item.label === inputSubmitType}
                                 type={item.type}
                                 onChange={item.type === 'file' ? handleFileChange : formik.handleChange}
                                 onBlur={formik.handleBlur}

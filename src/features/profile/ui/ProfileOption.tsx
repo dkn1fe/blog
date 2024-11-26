@@ -1,9 +1,9 @@
 import { Settings, SquarePlus, User } from "lucide-react";
-import { Button } from '@/components/ui/button.tsx';
 import { Link } from "react-router-dom";
 import {AppDispatch} from "@/app/providers/StoreProvider/config/store.ts";
 import {useDispatch} from "react-redux";
 import {clearMessage} from "@/app/providers/StoreProvider/config/ProfileSlice.ts";
+import {CreatePost} from "@/features/profile/ui/CreatePost.tsx";
 
 export const ProfileOption = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -25,9 +25,7 @@ export const ProfileOption = () => {
                         </Link>
                     </div>
                 ))}
-                <Button variant='default' className='w-[200px]'>
-                    Create Post
-                </Button>
+               <CreatePost/>
             </div>
             <div className='h-[calc(100vh-10vh)] border-l border-gray-300 w-[1px] ml-5'></div>
         </div>
